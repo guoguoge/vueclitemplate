@@ -1,7 +1,7 @@
 <template>
-  <div class="hello">
-你好,我是组件A
-  </div>
+<div class="hello">
+  你好,我是组件A
+</div>
 </template>
 
 <script>
@@ -14,6 +14,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="less"></style>
