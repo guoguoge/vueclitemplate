@@ -36,7 +36,19 @@ module.exports = {
     }
   },
 
-  chainWebpack: config => {},
+  chainWebpack: config => {
+    /**
+     * 删除懒加载模块的 prefetch preload，降低带宽压力
+     */
+    config.plugins
+      .delete('prefetch')
+      .delete('preload')
+    config.resolve.alias
+      .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
+      .set('#', resolve('src/components'))
+      .set('$', resolve('src/assets'))
+      .set('~', resolve('src/mixins'))
+  },
 
   configureWebpack: config => {
     if (IS_PROD) {
