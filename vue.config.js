@@ -110,22 +110,23 @@ module.exports = {
     open: true, //配置自动启动浏览器
     // proxy: 'http://localhost:4000' // 配置跨域处理,只有一个代理
     proxy: {
-      '/devApi': { //测试环境API 已经做过跨域处理
-        target: 'https://www.easy-mock.com/mock/5d2833c78d26e660360ad882/example/',
+      [process.env.VUE_APP_BASE_API]: { //测试环境API 已经做过跨域处理
+        target: `http://39.108.191.100:8081/crmservice/`,
         changeOrigin: true,
         ws: true,
         pathRewrite: {
-          '^/devApi': ''
+          ["^" + process.env.VUE_APP_BASE_API]: ''
         },
         emulateJSON: true,
         // headers: {
         //   'content-type': 'formData'
         // }
       },
+      // 配置多个代理
       // '/foo': {
       //   target: '<other_url>'
       // }
-    }, // 配置多个代理
+    },
   },
   baseUrl: BASE_URL,
   lintOnSave: false,
