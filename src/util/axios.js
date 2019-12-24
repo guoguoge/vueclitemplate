@@ -6,19 +6,17 @@ import store from '@/store'
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000, // request timeout
-  async: true
+  timeout: 5000
 })
 
 // request interceptor
 service.interceptors.request.use(
+  //请求拦截器
   config => {
     // do something before request is sent
 
     if (store.getters.token) {
-      // let each request carry token
-      // ['X-Token'] is a custom headers key
-      // please modify it according to the actual situation
+      //在此处可以添加同意的请求头
       // config.headers['token'] = getToken()
     }
     return config
@@ -31,19 +29,20 @@ service.interceptors.request.use(
 
 // response interceptor
 service.interceptors.response.use(
+  //请求拦截器
 
   /**
-   * If you want to get http information such as headers or status
-   * Please return  response => response
+   * 如果你想获得http信息，如报头或状态
+   * 请返回响应=>响应
    */
 
   /**
-   * Determine the request status by custom code
-   * Here is just an example
-   * You can also judge the status by HTTP Status Code
+   * 通过自定义代码确定请求状态
+   * 这里只是一个例子
+   * 你也可以通过HTTP状态码来判断状态
    */
   response => {
-    
+
     const res = response.data || response.status
 
     //有的接口请求成功了 但是返回的data为空 则返回status

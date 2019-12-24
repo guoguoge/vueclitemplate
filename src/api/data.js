@@ -1,12 +1,9 @@
-import request from '@/util/axios'
+import service from '@/util/axios'
 
-export function getServiceOrder(params) {
+export function getServiceOrder() {
   //获取服务订单列表
-  return request({
-    url: '/serviceOrder/',
-    method: 'GET',
-    params: {
-      ...params
-    }
+  return service({
+    url: 'resource',
+    method: 'post'
   })
 }

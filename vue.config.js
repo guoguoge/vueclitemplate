@@ -14,9 +14,7 @@ const assetsDir = 'assets'
 
 const posixJoin = _path => path.posix.join(assetsDir, _path)
 
-const BASE_URL = process.env.NODE_ENV === 'production' ?
-  './' :
-  '/'
+const BASE_URL = process.env.NODE_ENV === 'production' ? './' : '/'
 
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
 
@@ -111,9 +109,9 @@ module.exports = {
     // proxy: 'http://localhost:4000' // 配置跨域处理,只有一个代理
     proxy: {
       [process.env.VUE_APP_BASE_API]: { //测试环境API 已经做过跨域处理
-        target: `http://39.108.191.100:8081/crmservice/`,
+        target: 'http://129.28.67.91/Beesbit/api/public/',
         changeOrigin: true,
-        ws: true,
+        // ws: true,
         pathRewrite: {
           ["^" + process.env.VUE_APP_BASE_API]: ''
         },
@@ -128,7 +126,7 @@ module.exports = {
       // }
     },
   },
-  baseUrl: BASE_URL,
+  publicPath: BASE_URL,
   lintOnSave: false,
   outputDir: 'dist',
   assetsDir: 'assets',
